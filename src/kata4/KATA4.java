@@ -8,12 +8,30 @@ import kata4.view.MailHistogramBuilder;
 import kata4.view.MailListReader;
 
 public class KATA4 {
-
+    private static String filename;
+    private static List<Mail> mailList; 
+    private static Histogram<String> histogram;
+    
     public static void main(String[] args) {
-        String filename = "email.txt";
-        List<Mail> mailList = MailListReader.read(filename);
-        Histogram<String> histogram = MailHistogramBuilder.build(mailList);
-        
+        execute();
+    }
+    
+    public static void execute(){
+        input();
+        process();
+        output();
+    }
+
+    private static void input() {
+        filename = "email.txt";
+        mailList = MailListReader.read(filename);
+    }
+
+    private static void process() {
+        histogram = MailHistogramBuilder.build(mailList);
+    }
+
+    private static void output() {
         HistogramDisplay histo = new HistogramDisplay("Histograma", histogram);
         histo.execute();
     }
